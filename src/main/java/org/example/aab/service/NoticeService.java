@@ -28,7 +28,10 @@ public class NoticeService {
         return noticeRepository.findAll(pageable);  // Page 객체 반환
     }
 
-
+    public Notice readNotice(Long noticeId) {
+        return noticeRepository.findById(noticeId)
+                .orElseThrow(NoticeNotFoundException::new);
+    }
 
     public void updateNotice(Long noticeId, NoticeDto noticeDto){
         Notice notice = noticeRepository.findById(noticeId)
@@ -40,6 +43,7 @@ public class NoticeService {
     public void deleteNotice(Long noticeId){
         noticeRepository.deleteById(noticeId);
     }
+
 
 
 }

@@ -5,6 +5,7 @@ import org.example.aab.controller.form.NoticeForm;
 import org.example.aab.controller.response.ApiResponse;
 import org.example.aab.controller.response.NoticeIdResponse;
 import org.example.aab.controller.response.NoticeListResponse;
+import org.example.aab.controller.response.NoticeResponse;
 import org.example.aab.domain.Notice;
 import org.example.aab.dto.NoticeDto;
 import org.example.aab.service.NoticeService;
@@ -33,6 +34,13 @@ public class NoticeRestController {
         Page<Notice> noticePage = noticeService.readPageable(page);
         List<Notice> noticeList = noticePage.getContent();
         ApiResponse response = new NoticeListResponse(noticeList, noticePage.getTotalPages(), noticePage.getNumber(), noticePage.getSize());
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{noticeId}")
+    public ResponseEntity<ApiResponse> readNotice(@PathVariable Long noticeId){
+        Notice notice = noticeService.readNotice(noticeId);
+        ApiResponse response = new NoticeResponse(notice);
         return ResponseEntity.ok(response);
     }
 
