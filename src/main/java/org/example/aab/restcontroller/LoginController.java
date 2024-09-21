@@ -3,7 +3,6 @@ package org.example.aab.restcontroller;
 import jakarta.servlet.http.HttpSession;
 import org.example.aab.config.KakaoAPI;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 
@@ -11,18 +10,13 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api")
-@SessionAttributes({"userId", "accessToken"})
+//@SessionAttributes({"userId", "accessToken"})
 public class LoginController {
 
     private final KakaoAPI kakaoApi = new KakaoAPI();
 
     @RequestMapping("/login")
     public ModelAndView login(@RequestParam("code") String code, Model model) {
-        //로그
-        System.out.println("----");
-        System.out.println("호출됨");
-        System.out.println("코드 : " + code);
-        System.out.println("----");
 
         ModelAndView mav = new ModelAndView();
 
@@ -41,8 +35,8 @@ public class LoginController {
         }
 
         // 뷰 설정 및 사용자 정보 전달
-        mav.addObject("userId", userInfo.get("email"));
-        mav.setViewName("index");
+//        mav.addObject("userId", userInfo.get("email"));
+        mav.setViewName("redirect:/");
         return mav;
     }
 
@@ -61,7 +55,7 @@ public class LoginController {
         session.removeAttribute("userId");
         session.invalidate(); // 세션을 완전히 초기화
 
-        mav.setViewName("index"); // 로그아웃 후 홈 화면으로 이동
+        mav.setViewName("login"); // 로그아웃 후 홈 화면으로 이동
         return mav;
     }
 
