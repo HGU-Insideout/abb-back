@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>Kakao Login Test</h1>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=98d219c4217898cf3c7e2d139e23b5ca&redirect_uri=http://localhost:8080/api/login&response_type=code&scope=account_email">
+			카카오 로그인 페이지로 이동
+		</a>
+
+		<span th:if="${userId!=null}">
+		<form name="logout" action="http://localhost:8080/api/logout">
+			<input type="submit" value="로그아웃">
+		</form>
+		</span>
+
+</body>
+</html>
