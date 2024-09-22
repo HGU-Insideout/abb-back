@@ -1,0 +1,45 @@
+// _special-characters.scss
+// Google Fonts에서 Bebas Neue 폰트 설정
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.special-char {
+  font-family: 'Bebas Neue', sans-serif; // Bebas Neue 폰트 적용
+}
+
+.special-char-bold {
+  font-family: 'Bebas Neue', sans-serif; 
+  font-weight: bold; // 볼드 특수 문자
+}
+
+.special-char-italic {
+  font-family: 'Bebas Neue', sans-serif; 
+  font-style: italic; // 이탤릭 특수 문자
+}
+
+// 여러 곳에서 사용할 수 있는 특수 문자 클래스 추가
+.at-symbol {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.dash-symbol {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+/*
+<!-- 특수 문자 사용 가이드 -->
+
+-  -> <span class="special-char">-</span>
+@  -> <span class="special-char">@</span>
+&  -> <span class="special-char">&amp;</span>
+%  -> <span class="special-char">%</span>
+!  -> <span class="special-char">!</span>
+?  -> <span class="special-char">?</span>
+:  -> <span class="special-char">:</span>
+;  -> <span class="special-char">;</span>
+#  -> <span class="special-char">#</span>
+$  -> <span class="special-char">$</span>
+/  -> <span class="special-char">/</span>
+\  -> <span class="special-char">\</span>
+_  -> <span class="special-char">_</span>
+
+*/

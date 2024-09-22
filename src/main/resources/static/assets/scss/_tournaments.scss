@@ -1,0 +1,802 @@
+/* 섹션 1 - 토너먼트 소개 */
+.tournament-section {
+  background-color: $primary-black;  // 배경색: 블랙
+  color: $primary-white;  // 텍스트 색상: 흰색
+  position: relative;  // Enable positioning for child elements
+
+  .tournament-logo-section{
+    display:flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .tournament-logo {
+    justify-content: flex-end;
+    width: 50vw;
+    padding-top: 5vw;
+    padding-right: 5vw;
+  }
+  
+  .tournament-content {
+    bottom: 30vw;  // Align content to the bottom
+    left: 2vw;  // Align content to the left side
+    padding: 2vw;
+    padding-top: 0;
+    margin: 0;
+
+    .tournament-info {
+      h3 {
+        margin: 0;
+        font-size: 2vw;
+        color: $primary-white;
+      }
+
+      h1 {
+        font-size: 5vw;
+        margin: 0;
+        font-family: 'Academic M54', sans-serif;
+        color: #EF283D;  // 빨간색
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.5vw;
+        margin-bottom: 2vw;
+        color: $primary-white;
+      }
+    }
+
+    .tournament-buttons {
+      display: flex;
+      justify-content: flex-start;  // Align buttons to the left side
+      gap: 1.5vw;
+      margin-bottom: 1vw;
+
+      .btn {
+        padding: 1vw 2vw;
+        font-size: 1.2vw;
+        border-radius: 5vw;
+        text-decoration: none;
+        font-family: 'Academic M54', sans-serif;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+      }
+
+      .register-btn {
+        background-color: #EF283D;  // 레드 버튼
+        color: $primary-white;
+      }
+
+      .register-btn:hover {
+        background-color: #D22033;
+      }
+
+      .tickets-btn {
+        background-color: #EDE2CE;  // 베이지 버튼
+        color: #010101;
+      }
+
+      .tickets-btn:hover {
+        background-color: #D3C5B1;
+      }
+
+      .hotel-btn {
+        background-color: transparent;  // 투명한 버튼
+        color: #EF283D;
+        border: 2px solid #EF283D;
+      }
+
+      .hotel-btn:hover {
+        background-color: #EF283D;
+        color:  $primary-white;
+      }
+    }
+  }
+}
+
+/* Section 2 */
+.section-2 {
+  background-color: #F5F5F5;
+
+  
+
+  /* Section 2 - Header */
+  .section-2-header {
+   display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    background-color: #EF283D;
+    padding: 1vw 2vw; /* 좌우 여백 추가 */
+    padding-bottom: 2vw;
+    padding-left: 7vw;
+    padding-right: 7vw;
+    .back-link {
+      color: black; /* 텍스트 색상 */
+      text-decoration: none; /* 밑줄 제거 */
+      font-size: 1.3vw; /* 텍스트 크기 */
+      font-weight: bold; /* 텍스트 굵게 */
+      margin-right: auto; /* 왼쪽 정렬 */
+      padding-top: 1vw;
+
+    }
+  
+    .tabs {
+      display: flex;
+      gap: 2vw; /* 탭 간격 조정 */
+      margin-left: auto; /* 오른쪽 정렬 */
+  
+      .tab-link {
+        color: black; /* 탭 색상 */
+        text-decoration: none; /* 밑줄 제거 */
+        font-size: 1.3vw; /* 탭 크기 */
+        padding: 1vw 0; /* 상하 여백만 추가 */
+        border-bottom: 2px solid transparent; /* 기본 하단 선 숨기기 */
+        transition: all 0.3s ease; /* 호버 및 활성화 상태 전환 효과 */
+        display: inline-block; /* 하단 선이 텍스트 길이에 맞도록 설정 */
+        line-height: 1; /* 텍스트와 하단 선의 간격 설정 */
+        padding-bottom: 0;
+  
+        &:hover {
+          border-bottom: 2px solid #FFFFFF; /* 호버 상태 하단 선 */
+          color: white; /* 호버 상태 텍스트 색상 */
+        }
+  
+        &.active {
+          border-bottom: 2px solid #FFFFFF; /* 활성화된 탭 하단 선 */
+          color: white; /* 활성화된 탭 텍스트 색상 */
+        }
+      }
+    }
+  }
+
+  .section-2-header-mobile{
+    display: none;
+  }
+  
+  /* Section 2 - Content */
+  .tab-content {
+    background-color: white;
+
+    /* Section 2 - Tab Panels */
+    .tab-panel {
+      visibility: hidden; /* 요소를 보이지 않게 하지만 공간을 차지함 */
+      position: absolute; /* 페이지 레이아웃에 영향을 미치지 않음 */
+      top: 0;
+      left: 0;
+    }
+    
+    .tab-panel.active {
+      visibility: visible; /* 활성화된 패널만 보이도록 설정 */
+      position: static; /* 원래 위치로 돌아감 */
+    }
+
+    /* Section 2 - 1 (Information) */
+    .details {
+      display: flex;
+      justify-content: space-around;
+      padding: 2vw 0;
+      padding-top: 2vw;
+      padding-bottom: 3vw;
+
+      .detail-item {
+        text-align: center;
+
+        span {
+          display: block;
+          font-size: 2vw;
+          margin-bottom: 0.5vw;
+          color: #010101;
+          margin-top: 1.5vw;
+        }
+
+        p {
+          font-size: 1.5vw;
+          color: #010101;
+        }
+      }
+    
+      .icon{
+        width: 2.5vw; /* 아이콘 크기 */
+        height: 2.5vw; /* 아이콘 크기 */
+      }
+    }
+
+    .detail-item-mobile{
+      display: none;
+    }
+
+    .info_top{
+      padding-top: 2vw;
+      background-color: #EDE2CE;
+      margin: 0%;
+    
+    }
+    .info_top2{
+      margin-left: 10%;
+      margin-right: 10%;
+      padding-top: 2.5vw;
+    }
+    
+    .info_under {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .info_under2{
+      width: 80%;
+    }
+    .info_under2_video{
+      width: 80% ;
+    }
+    
+
+
+    
+    .video {
+      width: 100%; 
+      max-width: 1200px;
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+      padding-top: 5%; 
+      padding-bottom: 5%; 
+     
+    }
+
+    .video iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+      height: auto;
+      border: none;
+    }
+    
+    .sponsor-section {
+      width: 100%; /* 섹션 전체 너비 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .line-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%; /* 전체 너비로 설정 */
+      margin: 0; /* 여백 제거 */
+      padding: 0; /* 패딩 제거 */
+ 
+    }
+    
+    .line {
+      flex: 1; /* 선이 가능한 공간을 모두 차지하도록 설정 */
+      height: 0.1vw;
+      background-color: #000;
+    }
+    
+    .line:first-child {
+      margin-right: 10px; /* 첫 번째 선의 오른쪽 간격 */
+    }
+    
+    .line:last-child {
+      margin-left: 10px; /* 마지막 선의 왼쪽 간격 */
+    }
+    
+    .sponsor-text {
+      font-size: 1.6vw;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: 0 20px; /* 텍스트 좌우 간격 */
+    }
+
+    .main-sponsor{
+      padding: 3vw 5vw;
+      background-color: $primary-lightbeige;
+      padding: 5vw;
+      text-align: center;
+      font-size: 1.8vw;
+      color: $primary-grey;
+      margin-bottom: 2vw;
+    }
+
+    .partners{
+      padding: 3vw 5vw;
+      background-color: $primary-lightbeige;
+      padding: 5vw;
+      text-align: center;
+      font-size: 1.8vw;
+      color: $primary-grey;
+      margin-bottom: 4vw;
+    }
+
+
+
+    /* Section 2 - 2 (Gallery) */
+    .gallery-section {
+      padding: 2vw 5vw;
+      padding-bottom: 5vw;
+      background-color: white;
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
+
+    .caro-container {
+      position: relative;
+      width: 100%;
+    
+    }
+
+    .caro {
+      display: flex;
+      transition: all 0.3s ease-in-out;
+      overflow: hidden;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .gallery-card {
+      min-width: 20% !important; 
+      box-sizing: border-box;
+      padding: 0 0.5vw;
+      margin-bottom: 3vw;
+    }
+
+
+    .gallery-card img {
+      width: 100%;
+      height: 23vw;
+      padding: 0; /* 패딩 제거 */
+      margin: 0; /* 마진 제거 */
+      display: block;
+    }
+
+    .prevB, .nextB {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #EF283D; /* 버튼 색상 */
+      color: #FFFFFF;
+      border: none;
+      padding: 0.5vw;
+      font-size: 2vw;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+    }
+
+    .prevB {
+      left: -4vw;
+    }
+
+    .nextB {
+      right: -4vw;
+    }
+
+    .gallery_center{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .gallery-text{ 
+      font-size: 6vw;
+      margin-top: 4vw;
+      margin-bottom: 1vw;
+    }
+
+
+    .gallery-text-moblie{
+      display: none;
+    }
+    
+
+
+
+
+    /* Section 2 - 3 (Results) */
+    .btn-download {
+      display: inline-flex; /* 텍스트와 아이콘을 수평 정렬 */
+      align-items: center; /* 수직 중앙 정렬 */
+      justify-content: center; /* 수평 중앙 정렬 */
+      padding: 0.3vw 3vw;
+      background-color: #EF283D;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 50px;
+      margin-top: 3.5vw;
+      margin-bottom: 6vw;
+      font-size: 1.8vw;
+    }
+    .btn-download .icon {
+      width: 1em; /* 아이콘 크기 */
+      height: 1em; /* 아이콘 크기 */
+      margin-left: 0.5vw; /* 아이콘과 텍스트 사이의 간격 */
+    }     
+    .result_center{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .result-text{
+      font-size: 6vw;
+      margin-top: 4vw;
+    }
+
+    .result-text-mobile{
+      display: none;
+    }
+
+
+  }
+}
+
+
+@media (max-width: 768px) {
+  .section-2-header {
+    display: none !important; /*; /* 작은 화면에서 숨기기 */
+  }
+
+  .tab-content {
+    display: flex !important; /* 플렉스박스 사용 */
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 가운데 정렬 */
+    margin-top: 2vw; /* 상단 여백 추가 */
+    
+    .tab-panel {
+      visibility: visible  !important;  /* 모든 패널이 보이도록 설정 */
+      position: static !important; /* 페이지 레이아웃에 영향 미치도록 설정 */
+      margin-bottom: 2vw; /* 패널 사이 여백 추가 */
+
+    }
+  }
+
+  
+
+  .section-2-header-mobile{
+    display: flex  !important; 
+    align-items: center  !important;  /* 수직 중앙 정렬 */
+    justify-content: center;
+    background-color: #EF283D;
+    padding: 1vw 2vw; /* 좌우 여백 추가 */
+    padding-bottom: 2vw;
+    padding-left: 7vw;
+    padding-right: 7vw;
+    color: white;
+    font-size: 7vw !important;
+  }
+
+    /* Section 2 - Content */
+    .tab-content {
+      background-color: white;
+      margin-top: 0 !important;
+      
+       /* Section 2 - Tab Panels */
+      .tab-panel {
+        visibility: hidden; /* 요소를 보이지 않게 하지만 공간을 차지함 */
+        position: absolute; /* 페이지 레이아웃에 영향을 미치지 않음 */
+        top: 0;
+        left: 0;
+      }
+      
+      .tab-panel.active {
+        padding: 0;
+        width: 100%;
+
+      }
+  
+      /* Section 2 - 1 (Information) */
+      .details {
+        display: flex; /* 플렉스박스 사용 */
+        flex-direction: column; /* 세로 정렬로 변경 */
+        align-items: left; /* 가운데 정렬 */
+        text-align: left; /* 텍스트 가운데 정렬 */
+        gap: 2vw; /* 각 항목 간 간격 추가 */
+        margin-left: 20%;
+  
+        .detail-item {
+          text-align: left !important;
+          display: flex;
+   
+  
+          span {
+            display: block;
+            font-size: 5vw !important;
+            margin-bottom: 0.5vw;
+            color: #010101;
+            margin-top: 1.5vw;
+          }
+  
+          p {
+            font-size: 4vw!important;
+            color: #010101;
+          }
+        }
+      
+        .icon{
+          width: 9vw !important; /* 아이콘 크기 */
+          height: 9vw !important; /* 아이콘 크기 */
+          margin-right: 2vw;
+          margin-top: 2.5vw;
+        }
+      }
+
+      .detail-item-under{
+        display: flex; /* 플렉스박스 사용 */
+        flex-direction: column; /* 세로 정렬로 변경 */
+        align-items: left !important; /* 가운데 정렬 */
+        margin-left: 6vw;
+        margin-top: 0;
+      }
+  
+
+      .info_under2{
+        width: 80% !important;
+      }
+
+      .info_under2_video{
+        width: 100% !important;
+      }
+      
+  
+      
+      .video {
+        width: 100%; 
+        max-width: 1200px;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        padding-bottom: 5%; 
+        padding-top: 0 !important;
+   
+      }
+
+      
+      
+      .video iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        max-width: 100%;
+        height: auto;
+        border: none;
+      }
+      
+      .sponsor-section {
+        width: 100%; /* 섹션 전체 너비 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      
+      .line-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* 전체 너비로 설정 */
+        margin: 0; /* 여백 제거 */
+        padding: 0; /* 패딩 제거 */
+   
+      }
+      
+      .line {
+        flex: 1; /* 선이 가능한 공간을 모두 차지하도록 설정 */
+        height: 0.1vw;
+        background-color: #000;
+      }
+      
+      .line:first-child {
+        margin-right: 10px; /* 첫 번째 선의 오른쪽 간격 */
+      }
+      
+      .line:last-child {
+        margin-left: 10px; /* 마지막 선의 왼쪽 간격 */
+      }
+      
+      .sponsor-text {
+        font-size: 5vw !important;
+        text-transform: uppercase;
+        white-space: nowrap;
+        padding: 0 20px; /* 텍스트 좌우 간격 */
+      }
+  
+      .main-sponsor{
+        padding: 3vw 5vw;
+        padding: 5vw;
+        text-align: center;
+        font-size: 1.8vw;
+        color: $primary-grey;
+        margin-bottom: 2vw;
+      }
+  
+      .partners{
+        padding: 3vw 5vw;
+        padding: 5vw;
+        text-align: center;
+        font-size: 1.8vw;
+        color: $primary-grey;
+        margin-bottom: 4vw;
+      }
+
+      .detail-item-mobile{
+        display: flex !important;
+      }
+  
+      .detail-item-web{
+        display: none;
+      }
+  
+
+
+
+      /* Section 2 - 2 (Gallery) */
+      .gallery-section {
+        padding: 2vw 5vw;
+        padding-bottom: 5vw;
+        background-color: black !important;
+        margin-left: 5vw ;
+        margin-right: 5vw;
+      }
+  
+      .caro-container {
+        position: relative;
+        width: 100%;
+      
+      }
+  
+      .caro {
+        display: flex;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        width: 100%;
+        max-width: 1200px;
+      }
+  
+      .gallery-card {
+        min-width: 20% !important; 
+        box-sizing: border-box;
+        padding: 0 0.5vw;
+        margin-bottom: 3vw;
+      }
+  
+  
+      .gallery-card img {
+        width: 100%;
+        height: 23vw;
+        padding: 0; /* 패딩 제거 */
+        margin: 0; /* 마진 제거 */
+        display: block;
+      }
+  
+     
+  
+      .gallery_center{
+        background-color: black;
+      }
+
+
+      .gallery-text-moblie{
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 6vw;
+        margin-top: 3vw;
+        margin-bottom: 1vw;
+        color: white;
+      }
+
+      .gallery-text{
+        display: none;
+      }
+  
+
+  
+      /* Section 2 - 3 (Results) */
+      .btn-download {
+        display: inline-flex; /* 텍스트와 아이콘을 수평 정렬 */
+        align-items: center; /* 수직 중앙 정렬 */
+        justify-content: center; /* 수평 중앙 정렬 */
+        padding: 0.3vw 3vw;
+        text-decoration: none;
+        border-radius: 50px;
+        margin-top: 3.5vw;
+        margin-bottom: 6vw;
+        font-size: 2vw !important;
+        width: 19vw;
+      }
+      .btn-download .icon {
+        width: 1em; /* 아이콘 크기 */
+        height: 1em; /* 아이콘 크기 */
+        margin-left: 0.5vw; /* 아이콘과 텍스트 사이의 간격 */
+      }     
+
+      .result-text{
+        display: none;
+      }
+      .result-text-mobile{
+        font-size: 6vw;
+        margin-top: 4vw;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #EF283D;
+      }
+
+
+  
+    }
+
+
+    /* 섹션 1 - 토너먼트 소개 */
+.tournament-section {
+  background-color: $primary-black;  // 배경색: 블랙
+  color: $primary-white;  // 텍스트 색상: 흰색
+  position: relative;  // Enable positioning for child elements
+  padding-bottom: 10vw;
+  .tournament-logo-section{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .tournament-logo {
+    justify-content: center;
+    width: 70vw;
+    padding-top: 7vw;
+    padding-bottom: 7vw;
+    padding-right: 0;
+  }
+  
+  .tournament-content {
+    bottom: 30vw;  // Align content to the bottom
+    left: 2vw;  // Align content to the left side
+    padding: 2vw;
+    padding-top: 0;
+    margin: 0;
+
+    .tournament-info {
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h3 {
+        font-size: 6vw;
+      }
+
+      h1 {
+        font-size: 9vw;     
+      }
+
+      p {
+        font-size: 4vw;
+        margin-bottom: 4vw;
+
+      }
+    }
+
+    .tournament-buttons {
+      display: flex;
+      justify-content: center;  // Align buttons to the left side
+      align-items: center;
+      flex-direction: column;
+      gap: 1.5vw;
+      margin-bottom: 1vw;
+
+      .btn {
+        padding: 0;
+        font-size: 3vw;
+        display: flex; /* 플렉스박스 사용 */
+        justify-content: center; /* 텍스트 수평 중앙 정렬 */
+        align-items: center; /* 텍스트 수직 중앙 정렬 */
+        width: 60vw; /* 버튼의 고정 너비 */
+        height: 5vw; /* 버튼의 고정 높이 */
+        line-height: 50px; /* 텍스트의 세로 정렬 */
+      }
+
+    }
+  }
+}
+}

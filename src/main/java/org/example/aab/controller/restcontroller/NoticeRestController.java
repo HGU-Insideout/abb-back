@@ -1,4 +1,4 @@
-package org.example.aab.restcontroller;
+package org.example.aab.controller.restcontroller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.aab.controller.form.NoticeForm;

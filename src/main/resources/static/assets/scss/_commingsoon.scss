@@ -1,0 +1,114 @@
+.comming-soon-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $primary-lightbeige;  // 메인 배경색
+  color: #FFFFFF;  // 흰색 텍스트
+  text-align: center;
+  
+  .coming-soon-content {
+    width: 60vw;
+    height: 30vw;
+    padding: 5vw;
+    border-radius: 0.5vw;
+    background-color: #010101;  // 다크 배경
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vw;
+
+    // 로고 스타일
+    .comming-soon-logo-container {
+      display: flex;
+      flex-direction: column; /* 로고와 텍스트를 위아래로 정렬 */
+      align-items: center;
+      animation: fadeInLogo 0.8s ease-out forwards;
+    }
+
+    .comming-soon-logo {
+      height: 10vw;  /* 로고의 높이를 vw로 변경 */
+      margin-bottom: 0.1vw; /* 로고와 텍스트 사이의 간격을 vw로 변경 */
+    }
+
+    .comming-soon-logo-text {
+      color: $primary-red;
+      font-size: 2.5vw;  /* 텍스트 크기를 vw 단위로 변경 */
+      text-align: center;
+    }
+
+    // 타이틀 스타일
+    h2.comming-soon-title {
+      margin-top: 0;
+      font-size: 4vw;
+      margin-bottom: 1vw;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.8s forwards;
+    }
+
+    // 설명 텍스트 스타일
+    p.comming-soon-description {
+      font-size: 1.5vw;
+      margin-top: 1vw;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.8s forwards;
+      line-height: 1.5;
+      text-align: center;
+    }
+  }
+}
+
+// 로고 페이드인 애니메이션
+@keyframes fadeInLogo {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// 텍스트 페이드인 애니메이션
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .comming-soon-section {
+    padding: 0;
+    min-height: 100vh; /* 화면 전체를 차지 */
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-lightbeige;
+  }
+
+
+  .comming-soon-logo {
+    height: 25vw; /* 로고 크기를 화면 너비에 맞춰 조정 */
+    margin-bottom: 2vh; /* 로고와 텍스트 사이 간격 조정 */
+  }
+
+  .comming-soon-logo-text {
+    font-size: 8vw; /* 텍스트 크기 조정 */
+  }
+
+  h2.comming-soon-title {
+    font-size: 10vw; /* 타이틀 크기 조정 */
+    margin-bottom: 3vh; /* 타이틀과 설명 간의 간격 조정 */
+  }
+
+  p.comming-soon-description {
+    font-size: 5vw; /* 설명 텍스트 크기 조정 */
+    line-height: 1.2;
+    margin-top: 2vh;
+  }
+}

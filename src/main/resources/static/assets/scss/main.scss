@@ -1,0 +1,27 @@
+// main.scss
+
+@font-face {
+    font-family: 'Academic M54';
+    src: url('../fonts/AcademicM54.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  // 나머지 SCSS 파일 import
+  @import 'variables';
+  @import 'mixins';
+  @import 'header';
+  @import 'footer';
+  @import 'modals';
+  @import 'tournaments';
+  @import 'homepage';
+  @import 'commingsoon';
+  @import 'special-characters';
+
+
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }

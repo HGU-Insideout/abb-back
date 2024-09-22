@@ -1,0 +1,108 @@
+.main-footer {
+    background-color: #010101;
+    padding: 2vw 3.5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  
+    .footer-content {
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-logo-container {
+        display: flex;
+        flex-direction: column; /* 로고와 텍스트를 위아래로 정렬 */
+        align-items: center;    /* 로고와 텍스트를 수평으로 가운데 정렬 */
+    
+        .footer-logo {
+          height: 6.5vw;  /* 로고의 높이를 vw로 변경 */
+          margin-bottom: 0.1vw; /* 로고와 텍스트 사이의 간격을 vw로 변경 */
+        }
+    
+        .footer-logo-text {
+          color: $primary-red;
+          font-size: 1.5vw;  /* 텍스트 크기를 vw 단위로 변경 */
+          font-weight: bold;
+          text-align: center;
+        }
+    }
+  
+    .footer-logo-social {
+        margin-top: 1vw;
+      text-align: center;
+  
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 0.5vw;
+        margin-bottom: 1vw;
+  
+        .social-btn {
+          width: 2vw;
+          height: 2vw;
+          background-color: #EF283D;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+  
+          img {
+            width: 1vw;
+            height: 1vw;
+          }
+  
+          &:hover {
+            background-color: lighten(#EF283D, 10%);
+          }
+        }
+      }
+  
+      .btn-login {
+        background-color: #EF283D;
+        color: #FFFFFF;
+        padding: 0.3vw 2vw;
+        border-radius: 20px;
+        font-size: 1.2vw;
+        text-decoration: none;
+  
+        &:hover {
+          background-color: lighten(#EF283D, 10%);
+        }
+      }
+    }
+  
+    .company-info {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        max-width: 100%;
+        gap: 3.5vw;
+  
+      p {
+        color: #FFFFFF;
+        font-size: 1vw;
+        line-height: 1.5;
+        margin-bottom: 1.5vw;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+    }
+
+    .footer-image-container {
+        img {
+            width: 15vw;
+            border-radius: 0.5vw;
+          max-width: 100%; /* 이미지가 화면에 맞게 반응형으로 조절됩니다. */
+          height: auto;    /* 원본 비율 유지 */
+        }
+    }
+
+
+  }
+
+  /* 미디어 쿼리를 사용해 모바일 버전에서 푸터 숨기기 */
+@media screen and (max-width: 768px) {
+  .main-footer {
+    display: none;
+  }
+}
