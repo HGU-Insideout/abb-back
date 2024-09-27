@@ -1,5 +1,7 @@
 package org.example.aab.controller;
 
+import org.example.aab.domain.Notice;
+import org.example.aab.service.NoticeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import jakarta.servlet.http.Cookie;
@@ -10,6 +12,9 @@ import org.example.aab.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,6 +22,7 @@ public class ViewController {
 
     private final JwtUtil jwtUtil;
     private final UserService userService; // UserService에서 이메일을 가져오기 위한 서비스
+    private final NoticeService noticeService;
     @GetMapping("/")
     public String index() {
         return "index";
@@ -46,9 +52,17 @@ public class ViewController {
     public String contacts() {
         return "contacts";
     }
-    @GetMapping("/notice")
-    public String notice() {
-        return "notice";
+    @GetMapping("/admin/notice")
+    public String notice(Model model, @RequestParam(defaultValue = "0") int page) {
+        // 공지사항 목록을 페이징 처리하여 가져오기
+        var noticePage = noticeService.readPageable(page);
+        List<Notice> noticeList = noticePage.getContent();
+
+        model.addAttribute("noticeList", noticeList);
+        model.addAttribute("totalPages", noticePage.getTotalPages());
+        model.addAttribute("currentPage", noticePage.getNumber());
+
+        return "/admin/noticeList";  // Thymeleaf 템플릿 파일 이름 (notices.html)
     }
 
     @GetMapping("/login")
