@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 관리</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <style>
+        /* 색상 팔레트 수정 */
+        body {
+            background-color: #f5f5f5; /* 흰색 배경 */
+            color: #000; /* 검정 텍스트 */
+        }
+        .bg-custom {
+            background-color: #000; /* 검정 배경 */
+            color: #fff; /* 흰색 텍스트 */
+        }
+        .btn-custom {
+            background-color: #ff0000; /* 빨강 버튼 */
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #cc0000; /* 버튼 hover 시 어두운 빨강 */
+        }
+        .btn-primary {
+            background-color: #000; /* 검정색 수정 버튼 */
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #333; /* hover 시 조금 더 밝은 검정 */
+        }
+        .btn-danger {
+            background-color: #ff0000; /* 빨강 삭제 버튼 */
+            color: white;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #cc0000; /* hover 시 어두운 빨강 */
+        }
+        h1, h2, label {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        table thead {
+            background-color: #000; /* 테이블 헤더 검정색 */
+            color: #fff; /* 헤더 텍스트 흰색 */
+        }
+        table tbody tr {
+            background-color: #fff; /* 테이블 바디 흰색 */
+            color: #000; /* 바디 텍스트 검정색 */
+        }
+        .language-select select {
+            background-color: #fff;
+            border: 1px solid #000;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">AAB admin page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/notice">공지사항</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts">About</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header Section -->
+<div class="p-5 mb-5 text-center bg-custom">
+    <h1 id="page-title" class="mb-3">공지사항 관리</h1>
+    <h4 id="welcome-message" class="mb-3">공지사항을 관리하세요</h4>
+</div>
+
+<!-- 공지사항 생성 -->
+<div class="container">
+    <!-- 검색바 및 검색 기준 선택 드롭다운 -->
+    <div class="form-row mb-3">
+        <div class="col-md-3">
+            <select id="searchCriteria" class="form-control">
+                <option value="title">제목으로 검색</option>
+                <option value="content">내용으로 검색</option>
+            </select>
+        </div>
+        <div class="col-md-9">
+            <input type="text" id="searchBar" class="form-control" placeholder="검색어 입력" onkeyup="searchNotices()">
+        </div>
+    </div>
+
+    <!-- 공지사항 목록 -->
+    <h2>공지사항 목록</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody id="noticeTable">
+        <tr th:each="notice : ${noticeList}">
+            <td th:text="${notice.id}">ID</td>
+            <td>
+                <input type="text" th:value="${notice.title}" th:id="'title-' + ${notice.id}" class="form-control">
+            </td>
+            <td>
+                <textarea th:id="'content-' + ${notice.id}" th:text="${notice.content}" class="form-control"></textarea>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" th:onclick="'updateNotice(' + ${notice.id} + ')'">수정</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" th:onclick="'deleteNotice(' + ${notice.id} + ')'">삭제</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 공지 추가 버튼 -->
+    <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#addNoticeModal">공지 추가</button>
+
+    <!-- 공지 추가 모달 -->
+    <div class="modal fade" id="addNoticeModal" tabindex="-1" role="dialog" aria-labelledby="addNoticeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNoticeModalLabel">새 공지 추가</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addNoticeForm">
+                        <div class="form-group">
+                            <label for="newNoticeTitle">제목</label>
+                            <input type="text" class="form-control" id="newNoticeTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newNoticeContent">내용</label>
+                            <textarea class="form-control" id="newNoticeContent" rows="3" required></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addNotice()">추가</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+    // 공지사항 관련 함수들
+    function createNotice() {
+        // 공지사항 생성 로직
+    }
+
+    function updateNotice(id) {
+        // 공지사항 수정 로직
+        const title = document.getElementById('title-' + id).value;
+        const content = document.getElementById('content-' + id).value;
+
+        if (title && content) {
+            // 서버에 공지사항을 수정하는 로직을 여기에 추가해야 함 (예: AJAX로 서버에 전송)
+            alert('공지 수정됨: ' + title + '\n내용: ' + content);
+            fetch(`/api/${id}`,{
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    content: content
+                })
+            }).then(()=>{
+                alert('공지사항이 수정되었습니다.');
+                location.reload();
+            })
+        } else {
+            alert('제목과 내용을 입력하세요.');
+        }
+    }
+
+    function deleteNotice(id) {
+        // 공지사항 삭제 로직
+        const title = document.getElementById('title-' + id).value;
+        const content = document.getElementById('content-' + id).value;
+
+        if (confirm('정말로 삭제하시겠습니까?\n')) {
+            // 서버에 공지사항을 삭제하는 로직을 여기에 추가해야 함 (예: AJAX로 서버에 전송)
+            alert('공지 삭제됨: ' + title + '\n내용: ' + content);
+            fetch(`/api/${id}`,{
+                method: 'DELETE'
+            }).then(()=>{
+                alert('공지사항이 삭제되었습니다.');
+                location.reload();
+            })
+        }
+    }
+
+    // 공지 추가 함수 (실제 저장 로직은 서버와의 통신이 필요함)
+    function addNotice() {
+        const title = document.getElementById('newNoticeTitle').value;
+        const content = document.getElementById('newNoticeContent').value;
+
+        if (title && content) {
+            // 서버에 공지사항을 저장하는 로직을 여기에 추가해야 함 (예: AJAX로 서버에 전송)
+            alert('공지 추가됨: ' + title + '\n내용: ' + content);
+            fetch(`/api/notice`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    content: content
+                })
+            }).then(()=>{
+                alert('공지사항이 추가되었습니다.');
+                location.reload();
+            })
+            // 모달 닫기
+            $('#addNoticeModal').modal('hide');
+
+            // 폼 초기화
+            document.getElementById('addNoticeForm').reset();
+        } else {
+            alert('제목과 내용을 입력하세요.');
+        }
+    }
+
+    // 검색 기능 구현
+    function searchNotices() {
+        const input = document.getElementById('searchBar').value.toLowerCase();
+        const criteria = document.getElementById('searchCriteria').value; // 선택된 검색 기준
+        const table = document.getElementById('noticeTable');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            let titleCell = rows[i].getElementsByTagName('input')[0]; // 제목 열의 입력 필드
+            let contentCell = rows[i].getElementsByTagName('textarea')[0]; // 내용 열의 텍스트 영역
+            if (titleCell || contentCell) {
+                const titleText = titleCell.value || ""; // 제목 입력 필드의 값
+                const contentText = contentCell.value || ""; // 내용 텍스트 영역의 값
+
+                // 검색 기준에 따라 필터링
+                if (criteria === 'title' && titleText.toLowerCase().indexOf(input) > -1) {
+                    rows[i].style.display = "";
+                } else if (criteria === 'content' && contentText.toLowerCase().indexOf(input) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

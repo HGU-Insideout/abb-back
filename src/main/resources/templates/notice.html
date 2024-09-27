@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>공지사항 관리</title>
+    <script>
+        // 공지사항 생성, 삭제, 수정과 같은 JavaScript 코드들은 동일하게 유지됩니다.
+    </script>
+</head>
+<body>
+
+<h1>공지사항 관리</h1>
+
+<!-- 공지사항 생성 -->
+<h2>공지사항 생성</h2>
+<form onsubmit="event.preventDefault(); createNotice();">
+    <label for="title">제목:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label for="content">내용:</label>
+    <textarea id="content" name="content" required></textarea>
+    <br>
+    <button type="submit">공지 생성</button>
+</form>
+
+<hr>
+
+<!-- 공지사항 목록 -->
+<h2>공지사항 목록</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>제목</th>
+        <th>내용</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="notice : ${noticeList}">
+        <td th:text="${notice.id}">ID</td>
+        <td>
+            <input type="text" th:value="${notice.title}" th:id="'title-' + ${notice.id}">
+        </td>
+        <td>
+            <textarea th:id="'content-' + ${notice.id}" th:text="${notice.content}"></textarea>
+        </td>
+        <td>
+            <button type="button" th:onclick="'updateNotice(' + ${notice.id} + ')'">수정</button>
+        </td>
+        <td>
+            <button type="button" th:onclick="'deleteNotice(' + ${notice.id} + ')'">삭제</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
